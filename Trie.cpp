@@ -3,15 +3,16 @@
 #define data _data
 #define int long long
 using namespace std;
-const int maxn = 32001;
+const int maxn = 1e6 + 1;
 struct data
 {
-    int stop;      // số từ kết thúc bằng nodes này
-    int cnt;       //   so từ di qua nodes này
-    int par;       //cha
-    int child[26]; //con
+    int stop;
+    int cnt;
+    int par;
+    int child[26];
 };
 data Trie[maxn];
+string s[maxn];
 int cnt_nodes;
 int rt;
 int addnodes()
@@ -46,6 +47,7 @@ void addword(string s)
         // cout << r << " ";
     }
 }
+int cnt[30], dem[30];
 int32_t main()
 {
     ios_base::sync_with_stdio(false);
@@ -53,11 +55,24 @@ int32_t main()
     cout.tie(nullptr);
     // freopen("input", "r", stdin);
     // freopen("output", "w", stdout);
-    string s;
-    while (cin >> s)
+    int n;
+    cin >> n;
+
+    for (int i = 1; i <= n; i++)
     {
+        string s;
+        cin >> s;
+        sort(s.begin(), s.end());
+        for (int j = 0; j < s.length(); j++)
+            cnt[s[j] - 'a']++;
+        for (int j = 0; j < 30; j++)
+            dem[j] = max(dem[j], cnt[j]), cnt[j] = 0;
         addword(s);
-        // cout << s << endl;
     }
-    cout << cnt_nodes + 1 << endl;
+    int ans = 0;
+    for (int i = 0; i <= 29; i++)
+        ans += dem[i];
+    ans++;
+    cout << ans << endl;
+    // cout << cnt_nodes + 1 << endl;
 }

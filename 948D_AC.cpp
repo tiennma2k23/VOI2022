@@ -89,8 +89,8 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
-    freopen("input", "r", stdin);
-    freopen("output", "w", stdout);
+    // freopen("input", "r", stdin);
+    // freopen("output", "w", stdout);
     init();
     int n;
     cin >> n;
